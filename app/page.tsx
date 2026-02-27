@@ -1,18 +1,10 @@
 "use client";
 
-import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
+import { supabase } from "./lib/supabase";
+import { Tables } from "../supabase/types/database";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-type Todo = {
-  id: number;
-  text: string;
-  done: boolean;
-};
+type Todo = Tables<"todos">;
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -22,16 +14,16 @@ export default function Home() {
     supabase
       .from("todos")
       .select("*")
-      .order("created_at")
+      .order("inserted_at")
       .then(({ data }) => setTodos(data ?? []));
   }, []);
 
   async function addTodo() {
-    const text = input.trim();
-    if (!text) return;
+    const task = input.trim();
+    if (!task) return;
     const { data } = await supabase
       .from("todos")
-      .insert({ text })
+      .insert({ task })
       .select()
       .single();
     if (data) setTodos([...todos, data]);
@@ -39,8 +31,8 @@ export default function Home() {
   }
 
   async function toggleTodo(todo: Todo) {
-    await supabase.from("todos").update({ done: !todo.done }).eq("id", todo.id);
-    setTodos(todos.map((t) => (t.id === todo.id ? { ...t, done: !t.done } : t)));
+    await supabase.from("todos").update({ is_complete: !todo.is_complete }).eq("id", todo.id);
+    setTodos(todos.map((t) => (t.id === todo.id ? { ...t, is_complete: !t.is_complete } : t)));
   }
 
   async function deleteTodo(id: number) {
@@ -79,14 +71,14 @@ export default function Home() {
             >
               <input
                 type="checkbox"
-                checked={todo.done}
+                checked={todo.is_complete}
                 onChange={() => toggleTodo(todo)}
                 className="h-4 w-4 accent-zinc-900 dark:accent-zinc-50"
               />
               <span
-                className={`flex-1 text-sm ${todo.done ? "line-through text-zinc-400" : "text-zinc-900 dark:text-zinc-50"}`}
+                className={`flex-1 text-sm ${todo.is_complete ? "line-through text-zinc-400" : "text-zinc-900 dark:text-zinc-50"}`}
               >
-                {todo.text}
+                {todo.task}
               </span>
               <button
                 onClick={() => deleteTodo(todo.id)}
