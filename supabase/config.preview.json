@@ -1,0 +1,11 @@
+{
+  "$schema": "../../supabase-vscode-extension/packages/config/config-schema/config.overlay.schema.json",
+  "auth": {
+    "site_url": "http://localhost:3000",
+    "enable_signup": true,
+    "enable_anonymous_sign_ins": true
+  },
+  "api": {
+    "max_rows": 100
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "../../supabase-vscode-extension/packages/config/config-schema/config.schema.json",
+  "auth": {
+    "additional_redirect_urls": [
+      "https://*.vercel.app/*",
+      "http://localhost:3000/*",
+      "http://localhost:3001/*"
+    ],
+    "enable_anonymous_sign_ins": true,
+    "email": {
+      "enable_confirmations": false
+    },
+    "external": {
+      "github": {
+        "enabled": true,
+        "client_id": "client_id_of_preview",
+        "secret": "env(SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET)"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "../../supabase-vscode-extension/packages/config/config-schema/config.schema.json",
+  "auth": {
+    "site_url": "env(SITE_URL)",
+    "additional_redirect_urls": ["env(ADDITIONAL_REDIRECT_URLS)"],
+    "enable_anonymous_sign_ins": "env(ENABLE_ANONYMOUS_SIGN_INS)",
+    "email": {
+      "enable_confirmations": "env(AUTH_EMAIL_ENABLE_CONFIRMATIONS)"
+    },
+    "external": {
+      "github": {
+        "enabled": "env(SUPABASE_AUTH_EXTERNAL_GITHUB_ENABLED)",
+        "client_id": "env(SUPABASE_AUTH_EXTERNAL_GITHUB_CLIENT_ID)",
+        "secret": "env(SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET)"
+      }
+    }
+  }
+}

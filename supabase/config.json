@@ -1,10 +1,10 @@
 {
-  "$schema": "../../../cli/config-schema/config.schema.json",
+  "$schema": "../../supabase-vscode-extension/packages/config/config-schema/config.schema.json",
   "project_id": "plgwxrdtjycuupfwqqfr",
   "workflow_profile": "branching-remote",
   "schema_management": "declarative",
   "config_source": "code",
-  "production_branch": "main",
+  "production_branch": "main",  
   "api": {
     "schemas": [
       "public",

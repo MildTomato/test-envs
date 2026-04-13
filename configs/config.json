@@ -1,0 +1,27 @@
+{
+  "$schema": "../../supabase-vscode-extension/packages/config/config-schema/config.schema.json",
+  "project_id": "plgwxrdtjycuupfwqqfr",
+  "auth": {
+    "site_url": "https://myapp.com",
+    "additional_redirect_urls": ["https://myapp.com/*"],
+    "enable_anonymous_sign_ins": false,
+    "email": {
+      "enable_confirmations": true
+    },
+    "external": {
+      "github": {
+        "enabled": true,
+        "client_id": "Ov23liABCDEFGH123456",
+        "secret": "env(SUPABASE_AUTH_EXTERNAL_GITHUB_SECRET)"
+      }
+    }
+  },
+  "smtp": {
+    "host": "smtp.sendgrid.net",
+    "port": 587,
+    "user": "apikey",
+    "pass": "env(SMTP_PASS)",
+    "sender_name": "My App",
+    "admin_email": "admin@myapp.com"
+  }
+}
